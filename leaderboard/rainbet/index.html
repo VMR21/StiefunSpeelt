@@ -444,9 +444,13 @@ function updateCountdown() {
   const el = document.getElementById("countdown");
   const now = new Date();
 
-  // Get first day of next month at 00:00 UTC, then subtract 1 minute to get end of current month at 23:59
-  const nextMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1, 0, 0, 0));
-  const target = new Date(nextMonth.getTime() - 60000); // 1 minute before next month = last day 23:59 UTC
+  // Set target to the 19th of the current month at 23:59 UTC
+  let target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 19, 23, 59, 0));
+
+  // If current date is past the 19th 23:59 UTC, target becomes the 19th of next month
+  if (now > target) {
+    target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 19, 23, 59, 0));
+  }
 
   const diff = target - now;
   if (diff <= 0) {
@@ -464,6 +468,7 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
 
 async function loadLeaderboard() {
   const res = await fetch(API_URL);
