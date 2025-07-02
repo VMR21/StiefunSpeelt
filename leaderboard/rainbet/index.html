@@ -444,12 +444,12 @@ function updateCountdown() {
   const el = document.getElementById("countdown");
   const now = new Date();
 
-  // Set target to the 19th of the current month at 23:59 UTC
-  let target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 19, 23, 59, 0));
+  // Set target to the 18th of the current month at 23:59 UTC
+  let target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 18, 23, 59, 0));
 
-  // If current date is past the 19th 23:59 UTC, target becomes the 19th of next month
+  // If current date is past the 18th 23:59 UTC, target becomes the 18th of next month
   if (now > target) {
-    target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 19, 23, 59, 0));
+    target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 18, 23, 59, 0));
   }
 
   const diff = target - now;
